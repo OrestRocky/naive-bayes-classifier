@@ -7,14 +7,20 @@ Structure
 
 naive-bayes-classifier/
 ├── README.md
+
 ├── data/
+
 │   └── spam_emails.csv
 ├── notebook/
+
 │   └── naive_bayes_demo.ipynb
+
 ├── src/
 │   └── classifier.py
+
 ├── requirements.txt
 └── .gitignore
+
 
 Tech Stack
 - Python 3.x
