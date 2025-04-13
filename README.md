@@ -72,8 +72,6 @@ class NaiveBayesTextClassifier:
     def score(self, texts, labels):
         return self.model.score(texts, labels)
 ```
-
-
  Demo Notebook Features
 
 The `notebook/naive_bayes_demo.ipynb` file includes:
@@ -82,7 +80,23 @@ The `notebook/naive_bayes_demo.ipynb` file includes:
 - Accuracy evaluation
 - Sample classification of new messages
 
----
+ Example Output
+
+```python
+# Sample predictions:
+predictions = model.predict([
+    "Claim your free prize now!",
+    "Hey, how are you doing today?",
+    "Let's meet at the cafe."
+])
+print(predictions)
+# Output: ['spam' 'ham' 'ham']
+
+# Accuracy of the model:
+accuracy = model.score(texts, labels)
+print(f"Model accuracy: {accuracy:.2f}")
+# Output: Model accuracy: 0.83
+```
 
 How to Run
 
@@ -92,8 +106,6 @@ cd naive-bayes-classifier
 pip install -r requirements.txt
 jupyter notebook notebook/naive_bayes_demo.ipynb
 ```
-
-
 
  Why This Matters in AI
 
