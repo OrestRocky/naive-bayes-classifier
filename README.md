@@ -1,55 +1,117 @@
- Naive Bayes Classifier Project
+ 🧠 Naive Bayes Classifier
+
+A professional-level implementation of a Naive Bayes classifier in Python for spam detection. This project not only demonstrates the practical application of the algorithm, but also explains the theory behind it — making it a foundational example of probabilistic reasoning in AI systems.
+
+
 
 Overview
-This project demonstrates the implementation of a Naive Bayes Classifier using Python and scikit-learn. The goal is to classify text messages as "spam" or "not spam" based on their content.
 
-Structure
+Naive Bayes is a probabilistic classifier based on **Bayes' Theorem**, widely used in machine learning for tasks like text classification, email filtering, and recommendation systems. It's called "naive" because it assumes **independence** between features — an assumption that simplifies computation while remaining effective in practice.
 
+
+
+ Mathematical Foundation
+
+Bayes' Theorem:
+
+\[
+P(C|X) = \frac{P(X|C) \cdot P(C)}{P(X)}
+\]
+
+Where:
+- \( P(C|X) \) — Posterior probability of class \( C \) given input \( X \)
+- \( P(X|C) \) — Likelihood of data \( X \) given class \( C \)
+- \( P(C) \) — Prior probability of class \( C \)
+- \( P(X) \) — Marginal likelihood of input \( X \)
+
+In **Naive Bayes**, we assume that features \( x_1, x_2, ..., x_n \) are conditionally independent:
+
+\[
+P(X|C) = \prod_{i=1}^{n} P(x_i|C)
+\]
+
+This simplifies calculations and speeds up training, making it suitable for real-time systems.
+
+
+Project Structure
+
+```
 naive-bayes-classifier/
-├── README.md
-
-├── data/
-
-│   └── spam_emails.csv
-├── notebook/
-
-│   └── naive_bayes_demo.ipynb
-
-├── src/
+├── src/                  # Source code (classifier class)
 │   └── classifier.py
+├── data/                 # Dataset (CSV with spam/ham messages)
+│   └── spam_emails.csv
+├── notebook/             # Jupyter Notebook for demonstration
+│   └── naive_bayes_demo.ipynb
+├── requirements.txt      # Python dependencies
+└── README.md             # This file
+```
 
-├── requirements.txt
-└── .gitignore
 
 
-Tech Stack
-- Python 3.x
-- scikit-learn
-- pandas
-- Jupyter Notebook
+Core Implementation (Python)
+
+```python
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.pipeline import Pipeline
+
+class NaiveBayesTextClassifier:
+    def __init__(self):
+        self.model = Pipeline([
+            ('vectorizer', CountVectorizer()),
+            ('classifier', MultinomialNB())
+        ])
+
+    def train(self, texts, labels):
+        self.model.fit(texts, labels)
+
+    def predict(self, texts):
+        return self.model.predict(texts)
+
+    def score(self, texts, labels):
+        return self.model.score(texts, labels)
+```
+
+
+ Demo Notebook Features
+
+The `notebook/naive_bayes_demo.ipynb` file includes:
+- Data loading with pandas
+- Training and prediction
+- Accuracy evaluation
+- Sample classification of new messages
+
+---
 
 How to Run
-1. Clone the repository:
+
 ```bash
 git clone https://github.com/yourusername/naive-bayes-classifier.git
 cd naive-bayes-classifier
-```
-2. Install dependencies:
-```bash
 pip install -r requirements.txt
-```
-3. Launch Jupyter Notebook:
-```bash
 jupyter notebook notebook/naive_bayes_demo.ipynb
 ```
 
-Dataset
-We'll use a simplified dataset of text messages labeled as "spam" or "ham" (not spam). You can replace `spam_emails.csv` with any similar dataset.
 
-Next Steps
-- Add visualization of word frequencies
-- Include evaluation metrics (accuracy, precision, recall)
-- Try different preprocessing techniques (stemming, lemmatization)
 
-License
+ Why This Matters in AI
+
+Naive Bayes illustrates core ideas behind many AI systems:
+- **Probabilistic reasoning**
+- **Uncertainty modeling**
+- **Lightweight decision-making**
+
+It’s foundational in building explainable, efficient systems, especially in NLP and decision support.
+
+
+
+ Future Ideas
+- Confusion matrix visualization
+- Advanced preprocessing (n-grams, lemmatization)
+- Comparison with Logistic Regression and Decision Trees
+
+
+## 📄 License
 MIT License
+
